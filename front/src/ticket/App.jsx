@@ -4,6 +4,10 @@ import "./App.css";
 function App(props) {}
 
 export default connect(
-  (mapStateToProps = (state) => {}),
-  (mapDispatchToProps = (dispatch) => {})
-)(App);
+  function mapStateToProps(state) {
+    return {}
+  },
+  function mapDispatchToProps(dispatch) {
+    return {}
+  }
+)(App)
