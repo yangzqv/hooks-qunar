@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './App.css'
@@ -22,24 +22,28 @@ function App(props) {
     window.history.back()
   }, [])
 
-  const cbs = bindActionCreators({
-    exchangeFromTo,
-    showCitySelector
-  }, dispatch)
+  const cbs = useMemo(() => {
+    return bindActionCreators({
+      exchangeFromTo,
+      showCitySelector
+    }, dispatch)
+  }, [])
 
   return (
     <div>
       <div className="header-wrapper">
         <Header title="火车票" onBack={onBack} />
       </div>
-      <Journey
-        from={from}
-        to={to}
-        {...cbs}
-      />
-      <DepartDate />
-      <HighSpeed />
-      <Submit />
+      <form className="form">
+        <Journey
+          from={from}
+          to={to}
+          {...cbs}
+        />
+        <DepartDate />
+        <HighSpeed />
+        <Submit />
+      </form>
     </div>
   )
 }
