@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import './App.css'
 
 import Header from '../common/Header.jsx'
+import CitySelector from '../common/CitySelector'
 import DepartDate from './DepartDate.jsx'
 import HighSpeed from './HighSpeed.jsx'
 import Journey from './Journey.jsx'
@@ -15,7 +16,10 @@ function App(props) {
   const {
     from,
     to,
-    dispatch
+    dispatch,
+    isCitySelectorVisible,
+    cityData,
+    isLoadingCityData
   } = props
 
   const onBack = useCallback(() => {
@@ -44,6 +48,12 @@ function App(props) {
         <HighSpeed />
         <Submit />
       </form>
+      <CitySelector
+        show={isCitySelectorVisible}
+        cityData
+        isLoading={isLoadingCityData}
+        onBack={onBack}
+      />
     </div>
   )
 }
