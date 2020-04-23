@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useMemo } from 'react'
+import propTypes from 'prop-types'
 import classnames from 'classnames'
 import './CitySelector.css'
-import { setSelectedCity } from '../index/actions'
 
 export default function CitySelector(props) {
 	const {
@@ -13,6 +13,7 @@ export default function CitySelector(props) {
 
 	const [searchKey, setSearchKey] = useState('')
 	const currentInput = useRef()
+	const key = useMemo(() => searchKey.trim(), [searchKey])
 
 	const onGetFocus = () => {
 		setSearchKey('')
@@ -39,15 +40,22 @@ export default function CitySelector(props) {
 						className="search-input"
 						placeholder="城市、车展的中文或拼音"
 						onChange={e => setSearchKey(e.target.value)}
-						// ref={currentInput}
+						ref={currentInput}
 					/>
 				</div>
 				{/* {searchKey && (<i className="search-clean" onClick={onGetFocus}>&#xf063;</i>)} */}
 				<i
-					className={classnames('search-clean', {hidden: searchKey.length === 0})}
-					onClick={() => setSearchKey('')}
+					className={classnames('search-clean', {hidden: key.length === 0})}
+					onClick={onGetFocus}
 				>&#xf063;</i>
 			</div>
 		</div>
 	)
+}
+
+CitySelector.propTypes = {
+	show: propTypes.bool.isRequired,
+	cityData: propTypes.object,
+	isLoading: propTypes.bool.isRequired,
+	onBack: propTypes.func.isRequired
 }
