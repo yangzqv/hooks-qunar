@@ -114,13 +114,29 @@ export function fetchCityData() {
       return
     }
 
-    dispatch(setIsLoadingCityData(true))
+    // 读取缓存
+    const cache = JSON.parse(localStorage.getItem('city_data_cache') || '{}')
+    if (Date.now() < cache.expire) {
+      dispatch(setCityData(cache.data))
 
+      return
+    }
+
+    dispatch(setIsLoadingCityData(true))
     fetch('/rest/cities?_' + Date.now())
       .then(res => res.json())
       .then(cityData => {
         dispatch(setCityData(cityData))
         dispatch(setIsLoadingCityData(false))
+
+        // 写入缓存
+        localStorage.setItem(
+          'city_data_cache',
+          JSON.stringify({
+            expire: Date.now() + 60 * 1000,
+            data: cityData
+          })
+        )
       })
       .catch(() => {
         dispatch(setIsLoadingCityData(false))
