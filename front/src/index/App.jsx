@@ -13,7 +13,8 @@ import Submit from './Submit.jsx'
 import {
   showCitySelector,
   exchangeFromTo,
-  hideCitySelector
+  hideCitySelector,
+  fetchCityData
 } from './actions.js'
 
 function App(props) {
@@ -39,7 +40,8 @@ function App(props) {
 
   const citySelectorCbs = useMemo(() => {
     return bindActionCreators({
-      onBack: hideCitySelector
+      onBack: hideCitySelector,
+      fetchCityData
     }, dispatch)
   }, [])
 
@@ -60,7 +62,7 @@ function App(props) {
       </form>
       <CitySelector
         show={isCitySelectorVisible}
-        cityData
+        cityData={cityData}
         isLoading={isLoadingCityData}
         {...citySelectorCbs}
       />

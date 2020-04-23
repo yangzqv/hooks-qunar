@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from 'react'
+import React, { useState, useRef, useMemo, useEffect } from 'react'
 import propTypes from 'prop-types'
 import classnames from 'classnames'
 import './CitySelector.css'
@@ -8,12 +8,21 @@ export default function CitySelector(props) {
 		show,
 		cityData,
 		isLoading,
-		onBack
+		onBack,
+		fetchCityData
 	} = props
 
 	const [searchKey, setSearchKey] = useState('')
 	const currentInput = useRef()
 	const key = useMemo(() => searchKey.trim(), [searchKey])
+
+	useEffect(() => {
+		if (!show || cityData || isLoading) {
+			return
+		}
+
+		fetchCityData()
+	}, [show, cityData, isLoading])
 
 	const onGetFocus = () => {
 		setSearchKey('')
