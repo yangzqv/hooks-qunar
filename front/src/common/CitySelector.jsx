@@ -167,6 +167,68 @@ const CitySelector = memo(props => {
     return <div>error</div>
   }
 
+  // 搜索建议选项
+  const SuggestItem = memo(props => {
+    const { name, onClick } = props
+
+    return (
+      <li className="city-suggest-li" onClick={() => onClick(name)}>{name}</li>
+    )
+  })
+
+  SuggestItem.propTypes = {
+    name: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
+  }
+
+  // 搜索建议列表
+  const Suggest = memo(props => {
+    const { searchKey, onSelect } = props
+    const [result, setResult] = useState([])
+
+    useEffect(() => {
+      fetch('/rest/search?=' + encodeURIComponent(searchKey))
+        .then(res => res.json())
+        .then(data => {
+          const { result, searchKey: sKey } = data
+          console.log('data---', data)
+          if (sKey === result) {
+            setResult(result)
+          }
+        })
+    }, [searchKey])
+
+    const fallBackResult = useMemo(() => {
+      if (!result.length) {
+        return [{ display: searchKey }]
+      }
+
+      // console.log(result)
+      return result
+    }, [result, searchKey])
+
+    return (
+      <div className="city-suggest">
+        <div className="city-suggest-ul">
+          {fallBackResult.map(item => {
+            return (
+              <SuggestItem
+                key={item.display}
+                name={item.display}
+                onClick={onSelect}
+              />
+            )
+          })}
+        </div>
+      </div>
+    )
+  })
+
+  Suggest.propTypes = {
+    searchKey: PropTypes.string.isRequired,
+    onSelect: PropTypes.func.isRequired
+  }
+
   return (
     <div className={classnames('city-selector', { hidden: !show })}>
       <div className="city-search">
@@ -198,6 +260,9 @@ const CitySelector = memo(props => {
           &#xf063;
         </i>
       </div>
+      {Boolean(key) && (
+        <Suggest searchKey={key} onSelect={key => onSelect(key)} />
+      )}
       {outputCitySections()}
     </div>
   )
