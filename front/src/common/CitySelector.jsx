@@ -1,10 +1,16 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react'
-import propTypes from 'prop-types'
+import React, {
+  memo,
+  useState,
+  useRef,
+  useMemo,
+  useEffect
+} from 'react'
+import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import './CitySelector.css'
 
 // 城市项
-const CityItem = props => {
+const CityItem = memo(props => {
   const { name, onSelect } = props
 
   return (
@@ -12,10 +18,15 @@ const CityItem = props => {
       {name}
     </li>
   )
+})
+
+CityItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired
 }
 
 // 城市集合
-const CitySection = props => {
+const CitySection = memo(props => {
   const {
     title,
     onSelect,
@@ -36,10 +47,16 @@ const CitySection = props => {
       })}
     </div>
   )
+})
+
+CitySection.propTypes = {
+  title: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  cities: PropTypes.array
 }
 
 // 城市列表
-const CityList = props => {
+const CityList = memo(props => {
   const { sections, onSelect } = props
 
   return (
@@ -58,10 +75,15 @@ const CityList = props => {
       </div>
     </div>
   )
+})
+
+CityList.propTypes = {
+  sections: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired,
 }
 
 // 城市选择层
-const CitySelector = props => {
+const CitySelector = memo(props => {
   const {
     show,
     cityData,
@@ -139,14 +161,15 @@ const CitySelector = props => {
       {outputCitySections()}
     </div>
   )
-}
+})
 
 CitySelector.propTypes = {
-  show: propTypes.bool.isRequired,
-  cityData: propTypes.object,
-  isLoading: propTypes.bool.isRequired,
-  onBack: propTypes.func.isRequired,
-  fetchCityData: propTypes.func.isRequired
+  show: PropTypes.bool.isRequired,
+  cityData: PropTypes.object,
+  isLoading: PropTypes.bool.isRequired,
+  onBack: PropTypes.func.isRequired,
+  fetchCityData: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired
 }
 
 export default CitySelector
