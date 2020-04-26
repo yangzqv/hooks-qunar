@@ -3,7 +3,8 @@ import React, {
   useState,
   useRef,
   useMemo,
-  useEffect
+  useEffect,
+  useCallback
 } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
@@ -35,7 +36,7 @@ const CitySection = memo(props => {
 
   return (
     <div className="city-ui">
-      <div className="city-li">{title}</div>
+      <div className="city-li" data-cate={title}>{title}</div>
       {cities.map(city => {
         return (
           <CityItem
@@ -55,9 +56,31 @@ CitySection.propTypes = {
   cities: PropTypes.array
 }
 
+// 26个英文字母
+const AlphaIndex = memo(props => {
+  const { alpha, onClick } = props
+
+  return (
+    <i className="city-index-item" onClick={() => onClick(alpha)}>{alpha}</i>
+  )
+})
+
+AlphaIndex.propTypes = {
+  alpha: PropTypes.string.isRequired,
+  // onClick: PropTypes.func.isRequired
+}
+
+const alphabet = Array.from(new Array(26), (ele, index) => {
+  return String.fromCharCode(65 + index)
+})
+
 // 城市列表
 const CityList = memo(props => {
-  const { sections, onSelect } = props
+  const {
+    sections,
+    onSelect,
+    toAlpha
+  } = props
 
   return (
     <div className="city-list">
@@ -69,6 +92,17 @@ const CityList = memo(props => {
               title={section.title}
               onSelect={onSelect}
               cities={section.cities}
+            />
+          )
+        })}
+      </div>
+      <div className="city-index">
+        {alphabet.map(alpha => {
+          return (
+            <AlphaIndex
+              key={alpha}
+              alpha={alpha}
+              onClick={toAlpha}
             />
           )
         })}
@@ -110,6 +144,11 @@ const CitySelector = memo(props => {
     currentInput.current.focus()
   }
 
+  // 定位到对应的字母城市
+  const toAlpha = useCallback(alpha => {
+    document.querySelector(`[data-cate=${alpha}]`).scrollIntoView()
+  }, [])
+
   const outputCitySections = () => {
     if (isLoading) {
       return <div>loading</div>
@@ -120,6 +159,7 @@ const CitySelector = memo(props => {
         <CityList
           sections={cityData.cityList}
           onSelect={onSelect}
+          toAlpha={toAlpha}
         />
       )
     }
