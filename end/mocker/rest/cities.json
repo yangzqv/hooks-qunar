@@ -39,7 +39,7 @@
   ],
   "cityList": [
     {
-      "citys": [
+      "cities": [
         {
           "name": "安顺"
         },
@@ -59,7 +59,7 @@
       "title": "A"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "霸州"
         },
@@ -103,7 +103,7 @@
       "title": "B"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "滁州"
         },
@@ -168,7 +168,7 @@
       "title": "C"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "德兴"
         },
@@ -227,7 +227,7 @@
       "title": "D"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "鄂州"
         },
@@ -238,7 +238,7 @@
       "title": "E"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "富县"
         },
@@ -282,7 +282,7 @@
       "title": "F"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "高碑店"
         },
@@ -338,7 +338,7 @@
       "title": "G"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "侯马"
         },
@@ -439,7 +439,7 @@
       "title": "I"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "精河"
         },
@@ -504,7 +504,7 @@
       "title": "J"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "昆明"
         },
@@ -524,7 +524,7 @@
       "title": "K"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "柳州"
         },
@@ -604,7 +604,7 @@
       "title": "L"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "民权"
         },
@@ -639,7 +639,7 @@
       "title": "M"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "南宁"
         },
@@ -680,7 +680,7 @@
       "title": "O"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "彭山"
         },
@@ -715,7 +715,7 @@
       "title": "P"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "青岛"
         },
@@ -759,7 +759,7 @@
       "title": "Q"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "如东"
         },
@@ -776,7 +776,7 @@
       "title": "R"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "三水"
         },
@@ -865,7 +865,7 @@
       "title": "S"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "桐梓"
         },
@@ -927,7 +927,7 @@
       "title": "V"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "梧州"
         },
@@ -974,7 +974,7 @@
       "title": "W"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "孝感"
         },
@@ -1048,7 +1048,7 @@
       "title": "X"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "玉屏"
         },
@@ -1125,7 +1125,7 @@
       "title": "Y"
     },
     {
-      "citys": [
+      "cities": [
         {
           "name": "株洲"
         },
